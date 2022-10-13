@@ -20,7 +20,7 @@ export default css`
     transform: scale(1.1);
   }
   
-  main {
+  .main {
     width: 70%;
     display: flex;
     flex-wrap: wrap;
@@ -58,27 +58,5 @@ export default css`
     width: 142px;
     height: 200px;
   }  
-
-  #search{
-    position: relative;
-    width: 543px;
-    height: 34px;
-  }
-
-  .contenedor{
-    display: flex;
-    justify-content: center;
-    position:relative;
-    padding-top: 8px;
-  }
-
-  .input-icon {
-	color: rgb(134 126 126);
-	width: 20px;
-	height: 20px;
-	left: 12px;
-	top: 50%;
-  transform: translate(-28px, 10px);
-}
 
 `

@@ -1,12 +1,10 @@
 import { LitElement, html } from "lit-element";
-import styles from "../styles";
-import { BookSearch } from "./books-search";
+import styles from "../styles/styles-book-data";
 
-export class BookData extends LitElement {
+
+class BookData extends LitElement {
   static get properties() {
     return {
-      data: [],
-      books: [],
       allBooks: { type: Array },
       allRestore: { type: Array }
     };
@@ -16,11 +14,7 @@ export class BookData extends LitElement {
     super();
     this.allBooks = [];
     this.allRestore=[];
-    this.cargaLibros();
     this.books = [];
-    this.addEventListener("ApiData", (e) => {
-      this._dataFormat(e.detail.data);
-    });
     this.dataFromSearch();
   }
 
@@ -28,12 +22,11 @@ export class BookData extends LitElement {
     return [styles];
   }
 
-  async cargaLibros() {
-    fetch("../books.json").then((respuesta) => respuesta.json());
-  }
-
   firstUpdated() {
     this.getData();
+    this.addEventListener("ApiData", (e) => {
+      this._dataFormat(e.detail.data);
+    });
   }
 
   _sendData(data) {
@@ -48,10 +41,7 @@ export class BookData extends LitElement {
 
   getData() {
     fetch("../books.json")
-      .then((response) => {
-        if (response.ok) return response.json();
-        return Promise.reject(response);
-      })
+    .then((response) => response.json())
       .then((data) => {
         this._sendData(data);
       })
@@ -61,16 +51,14 @@ export class BookData extends LitElement {
   }
 
   _dataFormat(data) {
-    let books = [];
-    data["results"].forEach((book) => {
-      books.push({
-        img: book.img,
-        book_title: book.book_title,
-        author: book.author,
-      });
-    });
-    this.allBooks = books;
-    this.allRestore=books;
+    this.allBooks=data.results.map(({img,book_title,author}) => (
+      {
+        img,
+        book_title,
+        author,
+      }
+    ));
+    this.allRestore=this.allBooks;
     console.log(this.allBooks);
   }
 
@@ -79,20 +67,14 @@ export class BookData extends LitElement {
   }
 
   processData(data){
-    if(data.length==0){
-      this.allRestore=this.allBooks;
-    }else{
-      this.allRestore=data;
+    data.length==0 ? this.allRestore=this.allBooks:this.allRestore=data;
     }
-  }
-
+  
   render() {
     return html`
     <books-search .dataFromBook="${this.allBooks}"></books-search>
-    <main>
+    <div class="main">
       ${this.allRestore.map((book) => html`
-         
-          
             <div class="flexcontainer">
               <figure class="portada">
                 <img class="cover" src="${book.img}" />
@@ -107,7 +89,7 @@ export class BookData extends LitElement {
          
         `
       )}
-      </main>
+      </div>
     `;
   }
 }
