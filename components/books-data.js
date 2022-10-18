@@ -67,7 +67,7 @@ class BookData extends LitElement {
   }
 
   processData(data){
-    data.length==0 ? this.allRestore=this.allBooks:this.allRestore=data;
+    this.allRestore = data.length == 0 ? this.allBooks : data;
     }
   
   render() {
@@ -75,21 +75,19 @@ class BookData extends LitElement {
     <books-search .dataFromBook="${this.allBooks}"></books-search>
     <div class="main">
       ${this.allRestore.map((book) => html`
-            <div class="flexcontainer">
-              <figure class="portada">
-                <img class="cover" src="${book.img}" />
-              </figure>
-              <div class="contenido">
-                <div class="encabezado">
-                  <h1 class="titulo">${book.book_title}</h1>
-                  <p class="caracteristicas">${book.author}</p>
-                </div>
-              </div>
+        <div class="flexcontainer">
+          <figure class="cover">
+            <img class="imgcover" src="${book.img}" />
+          </figure>
+          <div class="content">
+            <div class="encabezado">
+              <h1 class="title">${book.book_title}</h1>
+              <p class="features">${book.author}</p>
             </div>
-         
-        `
-      )}
-      </div>
+          </div>
+        </div>     
+      `)}
+    </div>
     `;
   }
 }
