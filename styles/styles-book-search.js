@@ -8,7 +8,7 @@ export default css`
     height: 34px;
   }
 
-  .contenedor{
+  .contain{
     display: flex;
     justify-content: center;
     position:relative;
