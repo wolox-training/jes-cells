@@ -6,7 +6,7 @@ class BookData extends LitElement {
   static get properties() {
     return {
       allBooks: { type: Array },
-      allRestore: { type: Array }
+      allRestore: { type: Object }
     };
   }
 
@@ -69,13 +69,20 @@ class BookData extends LitElement {
   processData(data){
     this.allRestore = data.length == 0 ? this.allBooks : data;
     }
+
+    onClick(book) {
+      let event = new CustomEvent('book-clicked', {
+        detail: book.book_title
+      });
+      this.dispatchEvent(event);
+    }
   
   render() {
     return html`
     <books-search .dataFromBook="${this.allBooks}"></books-search>
     <div class="main">
       ${this.allRestore.map((book) => html`
-        <div class="flexcontainer">
+        <div class="flexcontainer" @click=${()=>this.onClick(book)} .book=${book}>
           <figure class="cover">
             <img class="imgcover" src="${book.img}" />
           </figure>
@@ -88,6 +95,7 @@ class BookData extends LitElement {
         </div>     
       `)}
     </div>
+     
     `;
   }
 }
