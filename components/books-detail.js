@@ -72,7 +72,7 @@ export class BookDetail extends LitElement {
           <nav class="back">
             <a href="index.html" class="backtext">Atrás</a>
           </nav>
-          <figure class="portada">
+          <figure class="mask">
             <img class="cover" src="${history.state.img}" alt="cover">
             <img class="badge" src="img/badge.png" alt="badge">
           </figure>
@@ -81,7 +81,7 @@ export class BookDetail extends LitElement {
               <h1 class="title">${history.state.book_title}</h1>
               <p class="gender">(${history.state.gender})</p>
             </div>
-            <div class="cuerpo">
+            <div class="body">
               <h2 class="subtitle">
                 Autor del libro:
                 <span class="features">${history.state.author}</span>

@@ -2,8 +2,6 @@ import {css} from "lit-element";
 
 export default css`
 
-@import 'styles';
-
 .main{
     display: flex;
     height: 100vh;
@@ -18,7 +16,7 @@ export default css`
     width: 75vh;
 }
 
-.cuerpo{
+.body{
     padding-top: 36px;
 }
 .flexcontainer{
@@ -64,12 +62,12 @@ export default css`
     font-weight: 300;
   }
 
-  .portada .cover{
+  .mask .cover{
     width: 261px;
     height: 368px;
   }
   
-  .portada .badge{
+  .mask .badge{
     height: 103.57px;
     width: 71.53px;
     transform: rotate(15deg);
@@ -123,21 +121,15 @@ a::before {
         width: 317px;
     }
 
-    .contenido{
+    .content{
         display: flex;
         flex-direction: column;
         padding: 0px 45px;
         flex-wrap: wrap;
     }
 
-    .titulo{
+    .title{
         font-size: 24px;
-        font-weight: 500;
-    }
-    
-    .detalle{
-        color: #828282;
-        font-size: 16px;
         font-weight: 500;
     }
     
@@ -148,25 +140,25 @@ a::before {
         font-weight: 500;
     }
     
-    .caracteristicas{
+    .features{
         color: #828282;
         font-size: 14px;
         line-height: 24px;
         font-weight: 300;
       }
 
-      .cuerpo{
+      .body{
         padding-top: 18px;
     }
     
-      .portada .cover{
+      .mask .cover{
         width: 212px;
         height: 298.91px;
         margin-left: 16px;
         margin-top: 28px;
       }
       
-      .portada .badge{
+      .mask .badge{
         height: 75.57px;
         width: $badgewitdh;
         transform: rotate(15deg);
@@ -183,10 +175,6 @@ a::before {
         line-height: 24px;
     }
     
-    
-    
-    
 }
-
 
 `
